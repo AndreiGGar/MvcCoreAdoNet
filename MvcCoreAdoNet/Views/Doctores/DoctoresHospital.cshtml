@@ -1,0 +1,44 @@
+﻿@model Doctors
+
+<div class="w-full flex justify-center place-content-center">
+    <div class="w-2/4 max-w-xs text-center">
+        <form method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-6/12">
+            <select name="especialidad">
+                <option value=""></option>
+                @foreach (string especialidad in Model.Especialidades)
+                {
+                    <option value="@especialidad">@especialidad</option>
+                }
+            </select>
+            <button>
+                Send form
+            </button>
+        </form>
+    </div>
+</div>
+
+<h4 class="text-2xl font-bold dark:text-white">Esta es la vista de doctores</h4>
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-4">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th>Apellido</th>
+                <th>Especialidad</th>
+                <th>Salario</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Doctor doctor in Model.Doctores)
+            {
+                <tr>
+                    <td>@doctor.Apellido</td>
+                    <td>@doctor.Especialidad</td>
+                    <td>@doctor.Salario</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<h4 style="color: lightcoral" class="mt-4">@ViewData["MENSAJE"]</h4>

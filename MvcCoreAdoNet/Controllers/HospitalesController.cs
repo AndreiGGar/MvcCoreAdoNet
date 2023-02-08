@@ -18,5 +18,22 @@ namespace MvcCoreAdoNet.Controllers
             List<Hospital> hospitales = this.repo.GetHospitales();
             return View(hospitales);
         }
+        public IActionResult Detalles(int idhospital)
+        {
+            Hospital hospital = this.repo.FindHospital(idhospital);
+            return View(hospital);
+        }
+        public IActionResult NewHospital()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult NewHospital(Hospital hospital)
+        {
+            this.repo.CreateHospital(hospital.idHospital, hospital.Nombre, hospital.Direccion, hospital.Telefono, hospital.Camas);
+            ViewData["MENSAJE"] = "Hospital insertado";
+            return View();
+        }
     }
 }

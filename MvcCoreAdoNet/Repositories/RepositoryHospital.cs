@@ -63,5 +63,21 @@ namespace MvcCoreAdoNet.Repositories
             this.com.Parameters.Clear();
             return hospital;
         }
+
+        public void CreateHospital(int idhospital, string nombre, string direccion, string telefono, int camas)
+        {
+            string sql = "INSERT INTO HOSPITAL VALUES(@ID, @NOMBRE, @DIRECCION, @TELEFONO, @CAMAS)";
+            this.com.Parameters.AddWithValue("@ID", idhospital);
+            this.com.Parameters.AddWithValue("@NOMBRE", nombre);
+            this.com.Parameters.AddWithValue("@DIRECCION", direccion);
+            this.com.Parameters.AddWithValue("@TELEFONO", telefono);
+            this.com.Parameters.AddWithValue("@CAMAS", camas);
+            this.com.CommandType = CommandType.Text;
+            this.com.CommandText = sql;
+            this.cn.Open();
+            this.reader = this.com.ExecuteReader();
+            this.cn.Close();
+            this.com.Parameters.Clear();
+        }
     }
 }
